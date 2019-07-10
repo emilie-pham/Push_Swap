@@ -6,7 +6,7 @@
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 09:09:50 by anradix           #+#    #+#             */
-/*   Updated: 2019/04/20 13:08:48 by epham            ###   ########.fr       */
+/*   Updated: 2019/06/26 17:55:51 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define LIBFT_H
 # include <string.h>
 # include <stdlib.h>
-#include <unistd.h>
-
-# define BUFF_SIZE 42
+# include <unistd.h>
 
 typedef struct		s_list
 {
@@ -26,6 +24,7 @@ typedef struct		s_list
 }					t_list;
 
 int					ft_atoi(const char *nptr);
+long long			ft_atol(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);

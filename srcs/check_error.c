@@ -6,7 +6,7 @@
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 18:28:03 by epham             #+#    #+#             */
-/*   Updated: 2019/04/20 13:22:00 by epham            ###   ########.fr       */
+/*   Updated: 2019/07/08 11:43:56 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,44 @@ int		nblen(int n)
 ***		CHECK ATOI OUTPUT (limits of int, non digit, ...)
 */
 
+int		ft_lennb(char *nb)
+{
+	int		out;
+	int		i;
+
+	i = 0;
+	out = 0;
+	if (nb[i] == '+' || nb[i] == '-')
+		i++;
+	while (nb[i] == '0')
+		i++;
+	while (nb[i])
+	{
+		i++;
+		out++;
+	}
+	return (out);
+}
+
 int		check_atoi(char *nb)
 {
-	int n;
+	int			i;
+	long long	n;
+	int			nbr_len;
 
-	n = ft_atoi(nb);
-	if ((n == 0 && nb[0] != '0') || (nb[0] != '-' && n < 0))
+	i = 0;
+	nbr_len = 0;
+	if ((nb[i] == '+' || nb[i] == '-') && ft_isdigit(nb[i + 1]) == 1)
+		i++;
+	while (nb[i] == '0')
+		i++;
+	while (ft_isdigit(nb[i + nbr_len]) != 0)
+		nbr_len++;
+	if (ft_isdigit(nb[i + nbr_len]) == 0 && nb[i + nbr_len] != '\0')
 		return (-1);
-	if (ft_strlen(nb) != nblen(n))
-	{
-		if ((ft_strlen(nb) == nblen(n) + 1
-			&& (nb[0] == '+' || nb[0] == '0'))
-			|| (ft_strlen(nb) == nblen(n) + 2
-			&& nb[0] == '+' && nb[1] == '0'))
-			return (0);
-		else
-			return (-1);
-	}
+	n = ft_atol(nb);
+	if (n < -2147483648 || n > 2147483647 || nbr_len > 10)
+		return (-1);
 	return (0);
 }
 
@@ -76,12 +97,19 @@ int		check_double(int *argtab, int argnb)
 	return (0);
 }
 
-int		error(t_env *env)
+/*
+***		SORTIE D'ERREUR
+*/
+
+int		error(t_env *env, int tmp)
 {
-	if (env->a)
+	if (tmp == -1)
+	{
 		free(env->a);
-	if (env->b)
 		free(env->b);
+	}
+	else if (tmp == -3)
+		ft_free(env);
 	free(env);
 	write(2, "Error\n", 6);
 	return (-1);

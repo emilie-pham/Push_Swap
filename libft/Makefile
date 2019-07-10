@@ -6,7 +6,7 @@
 #    By: epham <epham@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 09:05:15 by anradix           #+#    #+#              #
-#    Updated: 2019/04/18 20:17:37 by epham            ###   ########.fr        #
+#    Updated: 2019/06/18 16:07:02 by epham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = libft.a
 FLAGS = -Wall -Wextra -Werror
 
 SRC = 	ft_atoi.c\
+		ft_atol.c\
 		ft_bzero.c\
 		ft_isalnum.c\
 		ft_isalpha.c\

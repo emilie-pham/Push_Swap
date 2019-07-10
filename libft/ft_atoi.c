@@ -5,26 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: epham <epham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 15:31:54 by anradix           #+#    #+#             */
-/*   Updated: 2018/12/21 16:30:59 by epham            ###   ########.fr       */
+/*   Created: 2018/11/13 15:31:54 by epham             #+#    #+#             */
+/*   Updated: 2019/07/08 12:18:01 by epham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-int		ft_atoi(const char *nptr)
+int		ft_atoi(const char *str)
 {
-	int sign;
-	int n;
+	int		to_return;
+	int		sign;
+	char	*pointer;
 
+	pointer = (char*)str;
 	sign = 1;
-	n = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || (*nptr == 32))
-		nptr++;
-	sign = (*nptr == '-') ? -1 : 1;
-	if (*nptr == '+' || *nptr == '-')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-		n = ((n * 10) + (*nptr++ - '0'));
-	return (sign * n);
+	to_return = 0;
+	while (((*pointer >= 9 && *pointer <= 13) || *pointer == 32))
+		pointer++;
+	if (*pointer == '-')
+	{
+		sign = -1;
+		pointer++;
+	}
+	else if (*pointer == '+')
+		pointer++;
+	while (*pointer >= '0' && *pointer <= '9')
+	{
+		to_return = (to_return * 10) + (*pointer - 48);
+		pointer++;
+	}
+	return (to_return * sign);
 }
